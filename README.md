@@ -5,8 +5,7 @@ A modern and interactive coffee brand website built using HTML, CSS, and JavaScr
 ---
 
 ## 🚀 Live Demo
-🌐 https://satheesh-in.github.io/brew-motion-ui/
-
+🌐https://satheesh-in.github.io/brewmotion-coffee-website/
 ---
 
 ## 🛠 Technologies Used
