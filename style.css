@@ -1,0 +1,556 @@
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  font-family: Poppins;
+  margin: 0;
+  font-size: 16px;
+  background-color: #4f8b69;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+:root {
+  --border-color: #fff5;
+  --w-image: 400px;
+  --calculate: calc(3 / 2);
+}
+header {
+  display: grid;
+  grid-template-columns: 80px 1fr calc(var(--w-image) * var(--calculate));
+  grid-template-rows: 80px;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--border-color);
+}
+header .logo img {
+  width: 80%;
+}
+header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header nav a {
+  color: #000;
+  font-weight: 400;
+}
+header nav ul {
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 30px;
+  padding-right: 30px;
+}
+header nav {
+  border-left: 1px solid var(--border-color);
+}
+.carousel {
+  margin-top: -80px;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.carousel .list {
+  height: 100%;
+  position: relative;
+}
+.carousel .list::before {
+  position: absolute;
+  width: var(--w-image);
+  height: 100%;
+  content: "";
+  top: 0;
+  left: calc(100% - calc(var(--w-image) * var(--calculate)));
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  z-index: 10;
+  pointer-events: none;
+}
+.carousel .list::after {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  content: "";
+  background-color: red;
+  width: 400px;
+  height: 300px;
+  z-index: 10;
+  pointer-events: none;
+  border-radius: 20px 50px 110px 230px;
+  filter: blur(150px);
+  opacity: 0.6;
+}
+.carousel .list .item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.carousel .list .item .image {
+  width: var(--w-image);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: calc(100% - calc(var(--w-image) * var(--calculate)));
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  font-weight: 500;
+}
+.carousel .list .item .image img {
+  width: 90%;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 150px 50px #9e0c0c55);
+}
+.carousel .list .item .image figcaption {
+  font-family: "Aboreto";
+  font-weight: bold;
+  font-size: 1.3em;
+  text-align: right;
+  margin-bottom: 30px;
+  width: 70%;
+}
+.carousel .list .item .main-content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: calc(100% - calc(var(--w-image) * var(--calculate)));
+}
+.carousel .list .item .main-content .content {
+  padding: 150px 20px 20px 80px;
+}
+.carousel .list .item .main-content .content h2 {
+  font-size: 5em;
+  font-family: "Aboreto";
+}
+.carousel .list .item .main-content .content .price {
+  font-family: "Aboreto";
+  font-size: 3em;
+  margin: 20px 0;
+}
+.carousel .list .item .main-content .content .addToCard {
+  background-color: #4f8b69;
+  color: #fff;
+  padding: 10px 30px;
+  font-family: Poppins;
+  font-size: large;
+  font-weight: 500;
+  border-radius: 30px;
+  border: none;
+  margin-top: 20px;
+}
+.arrows {
+  position: absolute;
+  bottom: 20px;
+  width: calc(100% - calc(var(--w-image) * var(--calculate)));
+  display: grid;
+  grid-template-columns: repeat(2, 50px);
+  grid-template-rows: 50px;
+  justify-content: end;
+  gap: 10px;
+}
+.arrows button {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: #fff;
+  font-family: monospace;
+  font-size: large;
+  font-weight: bold;
+  line-height: 0;
+  box-shadow: 0 10px 40px #5555;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.arrows button:hover {
+  background-color: #eee5;
+}
+.carousel .list .item {
+  display: none;
+}
+.carousel .list .item.active,
+.carousel .list .item.other_1,
+.carousel .list .item.other_2 {
+  display: block;
+}
+.carousel .list .item.active {
+  z-index: 2;
+}
+.carousel .list .item.other_1,
+.carousel .list .item.other_2 {
+  pointer-events: none;
+}
+.carousel .list .item.active .main-content {
+  animation: showContent 1s ease-in-out 1 forwards;
+}
+@keyframes showContent {
+  from {
+    clip-path: circle(0% at 70% 50%);
+  }
+  to {
+    clip-path: circle(100% at 70% 50%);
+  }
+}
+.next .item.other_1 {
+  z-index: 1;
+}
+.next .item .image img,
+.next .item .image figcaption {
+  animation: effectNext 0.5s ease-in-out 1 forwards;
+}
+@keyframes effectNext {
+  from {
+    transform: translateX(calc(var(--transform-from)));
+  }
+  to {
+    transform: translateX(calc(var(--transform-from) - var(--w-image)));
+  }
+}
+.next .item.active .image {
+  --transform-from: var(--w-image);
+}
+.next .item.other_1 .image {
+  z-index: 3;
+  --transform-from: 0px;
+  overflow: hidden;
+}
+.next .item.other_2 .image {
+  z-index: 3;
+  --transform-from: calc(var(--w-image) * 2);
+}
+.arrows {
+  z-index: 10;
+}
+/* prev */
+.prev .list .item .image img,
+.prev .list .item .image figcaption {
+  animation: effectPrev 0.5s ease-in-out 1 forwards;
+}
+@keyframes effectPrev {
+  from {
+    transform: translateX(calc(var(--transform-from)));
+  }
+  to {
+    transform: translateX(calc(var(--transform-from) + var(--w-image)));
+  }
+}
+.prev .list .item.active .image {
+  --transform-from: calc(var(--w-image) * -1);
+  overflow: hidden;
+}
+.prev .list .item.other_1 .image {
+  --transform-from: 0px;
+  z-index: 3;
+}
+.prev .list .item.other_2 .image {
+  z-index: 3;
+  --transform-from: var(--w-image);
+}
+.prev .list .item.other_2 .main-content {
+  opacity: 0;
+}
+@media screen and (max-width: 1023px) {
+  :root {
+    --calculate: 1;
+    --w-image: 400px;
+  }
+  .carousel .list .item .main-content .content h2 {
+    font-size: 3em;
+  }
+}
+@media screen and (max-width: 767px) {
+  .carousel .list .item .image {
+    width: 100%;
+    left: 0;
+    justify-content: center;
+  }
+  .carousel .list .item .image figcaption {
+    color: #fff;
+    width: 100%;
+    text-align: center;
+  }
+  .carousel .list .item .main-content .content {
+    display: none;
+  }
+  .arrows {
+    left: 50%;
+    justify-content: center;
+  }
+}
+
+/* ================= STORY SECTION ================= */
+html {
+  scroll-behavior: smooth;
+}
+button {
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.story {
+  padding: 100px 80px;
+  background-color: #f5f1eb;
+}
+
+.story-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.story-content h2 {
+  font-family: "Aboreto";
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.story-content p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.learn-more {
+  background-color: #4f8b69;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.learn-more:hover {
+  background-color: #3a6a51;
+}
+/* ================= PARALLAX ================= */
+
+.parallax {
+  height: 80vh;
+  background-image: url("images/parallax-coffee.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.parallax-content h2 {
+  color: white;
+  font-size: 4em;
+  font-family: "Aboreto";
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 40px;
+  border-radius: 20px;
+}
+/* ================= PRODUCTS ================= */
+
+.products {
+  padding: 100px 80px;
+  background: #f9f6f1;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3em;
+  font-family: "Aboreto";
+  margin-bottom: 60px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.product-card {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  transition: 0.4s;
+}
+
+.product-card:hover {
+  transform: translateY(-15px);
+}
+
+.product-card img {
+  width: 70%;
+  margin-bottom: 20px;
+}
+
+.product-card button {
+  margin-top: 15px;
+  background: #4f8b69;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+/* ================= TESTIMONIALS ================= */
+
+.testimonials {
+  padding: 100px 80px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.testimonial-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.testimonial {
+  padding: 40px;
+  border-radius: 30px;
+  background: #f5f1eb;
+  font-style: italic;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial h4 {
+  margin-top: 20px;
+  font-style: normal;
+}
+/* ================= PREMIUM FEATURES ================= */
+
+.features {
+  padding: 120px 0;
+  background: linear-gradient(to bottom, #ffffff, #f7f4ef);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 40px;
+}
+
+.features .section-title {
+  text-align: center;
+  font-size: 3em;
+  font-family: "Aboreto";
+  margin-bottom: 80px;
+  color: #2e2e2e;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.feature-card {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  font-family: "Aboreto";
+}
+
+.feature-card p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 1em;
+}
+/* ================= FOOTER ================= */
+
+.footer {
+  background-color: #2e2e2e;
+  color: white;
+  padding-top: 60px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 80px 40px;
+  gap: 40px;
+}
+
+.footer h3,
+.footer h4 {
+  font-family: "Aboreto";
+  margin-bottom: 15px;
+}
+
+.footer p,
+.footer a {
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #555;
+  font-size: 0.85em;
+}
+@media (max-width: 768px) {
+  .story-container,
+  .features,
+  .footer-container {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .story {
+    padding: 60px 40px;
+  }
+}
+/* ================= SCROLL ANIMATION ================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 0.8s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
